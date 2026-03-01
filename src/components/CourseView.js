@@ -82,13 +82,12 @@ export default function CourseView({ folderId, onBack }) {
           </div>
 
           <div className="internship-box">
-            <p className="internship-motto">You will never be fully ready, start applying <strong>NOW :P</strong></p>
+            <p className="internship-motto">You will never be fully ready, start applying <strong style={{ color: '#000', fontSize: '1.05em' }}>NOW!!</strong></p>
             <p className="internship-title">Top Internship Resources</p>
             <ul className="internship-list">
               {[
                 { label: 'Simplify Summer 2026 Tracker', url: 'https://github.com/SimplifyJobs/Summer2026-Internships' },
                 { label: 'Community Collaboration List', url: 'https://github.com/vanshb03/Summer2026-Internships' },
-                { label: 'Curated Tracker', url: 'https://simplify.jobs/l/Top-Summer-Internships-2026' },
                 { label: 'Intern-List', url: 'https://intern-list.com' },
                 { label: 'WayUp', url: 'https://www.wayup.com' },
                 { label: 'YC Startups', url: 'https://www.ycombinator.com/internships' },
@@ -109,7 +108,6 @@ export default function CourseView({ folderId, onBack }) {
           <div className="tree-wrap">
             <div className="legend">
               <div className="lg-item"><div className="lg-dot ns" />Not Started</div>
-              <div className="lg-item"><div className="lg-dot ip" />In Progress</div>
               <div className="lg-item"><div className="lg-dot cp" />Completed</div>
             </div>
             <div className="rtree">
