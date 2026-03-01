@@ -125,22 +125,24 @@ export default function CourseView({ folderId, onBack }) {
         </div>
       </div>
 
-      {/* Detail panel */}
+      {/* Detail modal */}
       {detailItem && (
-        <div className="course-detail-panel">
-          <button className="chx" onClick={() => setDetailItem(null)}>x</button>
-          <h3>{detailItem.t}</h3>
-          <p className="cdesc">{detailItem.desc}</p>
-          {detailItem.grp && <p style={{ fontFamily: 'var(--font-accent)', color: 'var(--ink-faint)', marginBottom: 8 }}>Group: {detailItem.grp}</p>}
-          <h4 style={{ fontFamily: 'var(--font-accent)', fontSize: '1.1rem', marginBottom: 10 }}>Resources</h4>
-          <ul className="rl">
-            {detailItem.r?.map((res, i) => (
-              <li key={i}>
-                <span className={`rt-badge rt-${res.y}`}>{res.y}</span>
-                <a href={res.u} target="_blank" rel="noopener noreferrer">{res.t}</a>
-              </li>
-            ))}
-          </ul>
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }} onClick={() => setDetailItem(null)}>
+          <div className="course-detail-panel" style={{ maxWidth: '560px', width: '100%', maxHeight: '80vh', overflowY: 'auto', margin: 0 }} onClick={e => e.stopPropagation()}>
+            <button className="chx" onClick={() => setDetailItem(null)}>x</button>
+            <h3>{detailItem.t}</h3>
+            <p className="cdesc">{detailItem.desc}</p>
+            {detailItem.grp && <p style={{ fontFamily: 'var(--font-accent)', color: 'var(--ink-faint)', marginBottom: 8 }}>Group: {detailItem.grp}</p>}
+            <h4 style={{ fontFamily: 'var(--font-accent)', fontSize: '1.1rem', marginBottom: 10 }}>Resources</h4>
+            <ul className="rl">
+              {detailItem.r?.map((res, i) => (
+                <li key={i}>
+                  <span className={`rt-badge rt-${res.y}`}>{res.y}</span>
+                  <a href={res.u} target="_blank" rel="noopener noreferrer">{res.t}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
 
