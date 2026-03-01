@@ -18,7 +18,7 @@ const shelfCards = [
     links: [
       { label: 'Surprise (scikit-surprise)', url: 'https://github.com/NicolasHug/Surprise' },
       { label: 'LightFM', url: 'https://github.com/lyst/lightfm' },
-      { label: 'RecBole -- 73 Algorithms', url: 'https://github.com/RUCAIBox/RecBole' },
+      { label: 'RecBole: 73 Algorithms', url: 'https://github.com/RUCAIBox/RecBole' },
       { label: 'TensorFlow Recommenders', url: 'https://github.com/tensorflow/recommenders' },
       { label: 'Microsoft Recommenders', url: 'https://github.com/microsoft/recommenders' },
     ],
@@ -27,11 +27,11 @@ const shelfCards = [
     title: 'Must-Read Blogs',
     desc: 'Industry posts bridging theory and production.',
     links: [
-      { label: 'Netflix Tech Blog -- RecSys Series', url: 'https://netflixtechblog.com/tagged/recommendations' },
-      { label: 'Pinterest Engineering -- PinSage', url: 'https://medium.com/pinterest-engineering' },
-      { label: 'Airbnb -- Listing Embeddings', url: 'https://medium.com/airbnb-engineering/listing-embeddings-in-search-ranking-59632227b132' },
-      { label: 'Spotify Engineering -- Discover Weekly', url: 'https://engineering.atspotify.com/2023/01/content-sequencing/' },
-      { label: 'Google AI -- Two-Tower Models', url: 'https://blog.google/products/search/search-on-2022/' },
+      { label: 'Netflix Tech Blog: RecSys Series', url: 'https://netflixtechblog.com/tagged/recommendations' },
+      { label: 'Pinterest Engineering: PinSage', url: 'https://medium.com/pinterest-engineering' },
+      { label: 'Airbnb: Listing Embeddings', url: 'https://medium.com/airbnb-engineering/listing-embeddings-in-search-ranking-59632227b132' },
+      { label: 'Spotify Engineering: Discover Weekly', url: 'https://engineering.atspotify.com/2023/01/content-sequencing/' },
+      { label: 'Google AI: Two-Tower Models', url: 'https://blog.google/products/search/search-on-2022/' },
     ],
   },
 ];
