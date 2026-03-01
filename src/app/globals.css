@@ -318,10 +318,12 @@ a:hover { color: var(--accent-hover); }
 .mastery-done-btn:hover { border-color: var(--accent-green); color: var(--accent-green); }
 .mastery-done-btn.done { background: var(--accent-green-bg); border-color: var(--accent-green); color: var(--accent-green); font-weight: 600; }
 .cat-cell { font-weight: 600; white-space: nowrap; font-size: 0.78rem; }
-.problem-link { color: var(--ink); text-decoration: none; font-size: 0.84rem; transition: color var(--transition); }
-.problem-link:hover { color: var(--accent); }
-.pla { font-size: 0.75em; opacity: 0.3; margin-left: 2px; }
-.problem-link:hover .pla { opacity: 0.8; }
+.problem-link { color: var(--ink); text-decoration: none; font-size: 0.84rem; transition: color var(--transition); cursor: pointer; display: inline-flex; align-items: center; gap: 4px; }
+.problem-link:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.pla { font-size: 0.75em; opacity: 0; margin-left: 2px; transition: opacity var(--transition), transform var(--transition); }
+.problem-link:hover .pla { opacity: 1; transform: translateX(2px); }
+.mastery-table tbody tr { cursor: pointer; transition: background var(--transition); }
+.mastery-table tbody tr:hover td { background: var(--bg-hover); }
 .project-badge { font-size: 0.62rem; font-weight: 600; background: var(--accent-orange); color: #fff; padding: 1px 6px; margin-left: 6px; vertical-align: middle; }
 
 /* SHELF */

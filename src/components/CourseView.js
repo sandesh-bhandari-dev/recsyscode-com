@@ -82,7 +82,7 @@ export default function CourseView({ folderId, onBack }) {
           </div>
 
           <div className="internship-box">
-            <p className="internship-motto">You will never be fully ready — start applying <strong>NOW.</strong></p>
+            <p className="internship-motto">You will never be fully ready, start applying <strong>NOW :P</strong></p>
             <p className="internship-title">Top Internship Resources</p>
             <ul className="internship-list">
               {[
