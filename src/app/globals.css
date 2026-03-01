@@ -244,7 +244,7 @@ a:hover { color: var(--accent-hover); }
 .rtree { display: flex; flex-direction: column; align-items: center; }
 .tree-tier { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
 .tn {
-  background: var(--ink); color: #fff;
+  background: var(--ink); color: var(--bg);
   font-size: 0.7rem; font-weight: 500;
   padding: 6px 10px; cursor: pointer;
   transition: all var(--transition);
@@ -265,7 +265,7 @@ a:hover { color: var(--accent-hover); }
 .legend { display: flex; gap: 14px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
 .lg-item { display: flex; align-items: center; gap: 5px; font-size: 0.7rem; color: var(--ink-secondary); }
 .lg-dot { width: 10px; height: 10px; }
-.lg-dot.ns { background: var(--ink); }
+.lg-dot.ns { background: var(--ink-secondary); }
 .lg-dot.ip { background: var(--accent-orange); }
 .lg-dot.cp { background: var(--accent-green); }
 
