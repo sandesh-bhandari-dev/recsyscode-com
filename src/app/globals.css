@@ -48,6 +48,7 @@ html { scroll-behavior: smooth; }
   --accent-hover: #dc2626;
   --accent-blue: #60a5fa;
   --accent-blue-hover: #3b82f6;
+  --accent-blue-bg: #0c1a2e;
   --accent-green: #4ade80;
   --accent-green-bg: #052e16;
   --accent-orange: #fb923c;
@@ -363,7 +364,7 @@ main { min-height: calc(100vh - 120px); display: flex; flex-direction: column; }
 .resource-item a:hover { color: var(--accent); }
 .resource-type-badge { font-size: 0.65rem; font-weight: 600; padding: 2px 8px; white-space: nowrap; text-transform: uppercase; letter-spacing: 0.04em; flex-shrink: 0; }
 .resource-type-badge.paper { color: var(--accent-purple); background: var(--accent-purple-bg); }
-.resource-type-badge.blog { color: var(--accent-blue); background: #eff6ff; }
+.resource-type-badge.blog { color: var(--accent-blue); background: var(--accent-blue-bg, #eff6ff); }
 .resource-type-badge.video { color: var(--accent); background: var(--accent-red-bg); }
 .resource-type-badge.code { color: var(--accent-green); background: var(--accent-green-bg); }
 .resource-type-badge.dataset { color: var(--accent-orange); background: var(--accent-orange-bg); }
