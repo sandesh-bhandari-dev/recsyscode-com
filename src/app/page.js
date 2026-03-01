@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import LocationBar from '@/components/LocationBar';
 import Archive from '@/components/Archive';
@@ -13,19 +13,21 @@ import AuthModal from '@/components/AuthModal';
 import Footer from '@/components/Footer';
 import { useAuth } from '@/lib/hooks';
 
+const SECTIONS = ['archive', 'shelf', 'videos', 'papers', 'submit'];
+
+function getInitialSection() {
+  if (typeof window !== 'undefined') {
+    const hash = window.location.hash.replace('#', '');
+    if (SECTIONS.includes(hash)) return hash;
+  }
+  return 'archive';
+}
+
 export default function HomePage() {
-  const [activeSection, setActiveSection] = useState('archive');
+  const [activeSection, setActiveSection] = useState(getInitialSection);
   const [activeFolder, setActiveFolder] = useState(null);
   const [showAuth, setShowAuth] = useState(false);
   const { user, signIn, signOut } = useAuth();
-
-  // Read hash on first load
-  useState(() => {
-    const hash = window.location.hash.replace('#', '');
-    if (hash && ['archive', 'shelf', 'videos', 'papers', 'submit'].includes(hash)) {
-      setActiveSection(hash);
-    }
-  });
 
   const openFolder = (folderId) => {
     setActiveFolder(folderId);
