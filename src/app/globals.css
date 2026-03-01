@@ -18,6 +18,7 @@ html { scroll-behavior: smooth; }
   --accent-hover: #b91c1c;
   --accent-blue: #2563eb;
   --accent-blue-hover: #1d4ed8;
+  --accent-blue-bg: #eff6ff;
   --accent-green: #16a34a;
   --accent-green-bg: #f0fdf4;
   --accent-orange: #ea580c;
@@ -459,7 +460,7 @@ main { min-height: calc(100vh - 120px); display: flex; flex-direction: column; }
 .back-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 /* FEEDBACK */
-.feedback-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.feedback-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 20px; animation: fadeIn 0.15s ease; }
 .feedback-section { border: 1px solid var(--border); padding: 36px 32px; background: var(--bg-card); width: 100%; max-width: 480px; }
 .feedback-section h3 { font-size: 1rem; margin-bottom: 18px; }
 .feedback-field { margin-bottom: 12px; }
