@@ -19,14 +19,24 @@ export default function HomePage() {
   const [showAuth, setShowAuth] = useState(false);
   const { user, signIn, signOut } = useAuth();
 
+  // Read hash on first load
+  useState(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && ['archive', 'shelf', 'videos', 'papers', 'submit'].includes(hash)) {
+      setActiveSection(hash);
+    }
+  });
+
   const openFolder = (folderId) => {
     setActiveFolder(folderId);
     setActiveSection('course');
+    window.location.hash = 'course-' + folderId;
   };
 
   const backToArchive = () => {
     setActiveFolder(null);
     setActiveSection('archive');
+    window.location.hash = 'archive';
   };
 
   const handleSectionChange = (section) => {
@@ -34,6 +44,7 @@ export default function HomePage() {
       setActiveFolder(null);
     }
     setActiveSection(section);
+    window.location.hash = section;
   };
 
   const renderSection = () => {
