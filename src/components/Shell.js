@@ -10,7 +10,7 @@ import { useAuth } from '@/lib/hooks';
 export default function Shell({ activeSection, activeFolder, children }) {
   const router = useRouter();
   const [showAuth, setShowAuth] = useState(false);
-  const { user, signIn, signOut } = useAuth();
+  const { user, signOut } = useAuth();
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
@@ -63,7 +63,6 @@ export default function Shell({ activeSection, activeFolder, children }) {
       {showAuth && (
         <AuthModal
           onClose={() => setShowAuth(false)}
-          onSignIn={(data) => { signIn(data); setShowAuth(false); }}
         />
       )}
     </>

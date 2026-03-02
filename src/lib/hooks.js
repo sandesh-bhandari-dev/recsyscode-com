@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { supabase } from './supabase';
 
 const STORAGE_KEY_PREFIX = 'rsc_course_';
-const AUTH_KEY = 'rsc_auth_v1';
 
 export function useCourseProgress(folderId) {
   const [state, setState] = useState({});
@@ -13,12 +13,12 @@ export function useCourseProgress(folderId) {
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved) setState(JSON.parse(saved));
-    } catch { /* ignore */ }
+    } catch { }
   }, [storageKey]);
 
   useEffect(() => {
     if (Object.keys(state).length === 0) return;
-    try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch {}
+    try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch { }
   }, [state, storageKey]);
 
   const cycleProgress = useCallback((id) => {
@@ -60,22 +60,24 @@ export function useAuth() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(AUTH_KEY);
-      if (saved) setUser(JSON.parse(saved));
-    } catch {}
-    setIsLoading(false);
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      setIsLoading(false);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
-  const signIn = useCallback((userData) => {
-    setUser(userData);
-    try { localStorage.setItem(AUTH_KEY, JSON.stringify(userData)); } catch {}
-  }, []);
-
-  const signOut = useCallback(() => {
+  const signOut = useCallback(async () => {
+    await supabase.auth.signOut();
     setUser(null);
-    try { localStorage.removeItem(AUTH_KEY); } catch {}
   }, []);
 
-  return { user, isLoading, signIn, signOut };
+  return { user, isLoading, signOut };
 }

@@ -1,73 +1,41 @@
 'use client';
 
 import { useState } from 'react';
+import { supabase } from '@/lib/supabase';
 
-export default function AuthModal({ onClose, onSignIn }) {
+export default function AuthModal({ onClose }) {
   const [mode, setMode] = useState('signin');
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
-    if (!email.trim() || !password.trim()) {
-      setError('Please fill in all required fields.');
-      return;
-    }
-    if (mode === 'signup' && !name.trim()) {
-      setError('Please enter your name.');
-      return;
-    }
-
-    const userData = {
-      id: 'user_' + Date.now(),
-      name: mode === 'signup' ? name.trim() : email.split('@')[0],
-      email: email.trim(),
-      createdAt: new Date().toISOString(),
-    };
+    setMessage('');
+    setLoading(true);
 
     if (mode === 'signup') {
-      try {
-        const users = JSON.parse(localStorage.getItem('rsc_users') || '{}');
-        if (users[email.trim()]) {
-          setError('An account with this email already exists.');
-          return;
-        }
-        users[email.trim()] = { ...userData, password };
-        localStorage.setItem('rsc_users', JSON.stringify(users));
-      } catch { /* ignore */ }
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) { setError(error.message); }
+      else { setMessage('Check your email for a confirmation link!'); }
     } else {
-      try {
-        const users = JSON.parse(localStorage.getItem('rsc_users') || '{}');
-        const existing = users[email.trim()];
-        if (!existing) {
-          userData.name = email.split('@')[0];
-        } else if (existing.password !== password) {
-          setError('Invalid password.');
-          return;
-        } else {
-          userData.name = existing.name;
-          userData.id = existing.id;
-        }
-      } catch { /* ignore */ }
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) { setError(error.message); }
+      else { onClose(); }
     }
-
-    onSignIn(userData);
+    setLoading(false);
   };
 
-  const handleGoogleSignIn = () => {
-    // In production, this would use Supabase Auth with Google OAuth
-    // For now, simulate with a demo user
-    const userData = {
-      id: 'google_' + Date.now(),
-      name: 'Google User',
-      email: 'user@gmail.com',
-      createdAt: new Date().toISOString(),
-    };
-    onSignIn(userData);
+  const handleGoogle = async () => {
+    setError('');
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin },
+    });
+    if (error) setError(error.message);
   };
 
   return (
@@ -85,8 +53,7 @@ export default function AuthModal({ onClose, onSignIn }) {
           <p>Track your progress across all courses</p>
         </div>
 
-        {/* Google Sign In */}
-        <button className="auth-google-btn" onClick={handleGoogleSignIn}>
+        <button className="auth-google-btn" onClick={handleGoogle}>
           <svg width="18" height="18" viewBox="0 0 24 24">
             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
             <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -99,19 +66,6 @@ export default function AuthModal({ onClose, onSignIn }) {
         <div className="auth-divider">or</div>
 
         <form onSubmit={handleSubmit} className="auth-form">
-          {mode === 'signup' && (
-            <div className="auth-field">
-              <label>Name</label>
-              <input
-                type="text"
-                placeholder="Your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                autoComplete="name"
-              />
-            </div>
-          )}
-
           <div className="auth-field">
             <label>Email</label>
             <input
@@ -137,17 +91,18 @@ export default function AuthModal({ onClose, onSignIn }) {
           </div>
 
           {error && <div className="auth-error">{error}</div>}
+          {message && <div className="auth-success">{message}</div>}
 
-          <button type="submit" className="auth-submit-btn">
-            {mode === 'signin' ? 'Sign In' : 'Create Account'}
+          <button type="submit" className="auth-submit-btn" disabled={loading}>
+            {loading ? 'Please wait...' : mode === 'signin' ? 'Sign In' : 'Create Account'}
           </button>
         </form>
 
         <div className="auth-switch">
           {mode === 'signin' ? (
-            <p>No account yet? <a onClick={() => { setMode('signup'); setError(''); }}>Create one</a></p>
+            <p>No account yet? <a onClick={() => { setMode('signup'); setError(''); setMessage(''); }}>Create one</a></p>
           ) : (
-            <p>Already have an account? <a onClick={() => { setMode('signin'); setError(''); }}>Sign in</a></p>
+            <p>Already have an account? <a onClick={() => { setMode('signin'); setError(''); setMessage(''); }}>Sign in</a></p>
           )}
         </div>
       </div>
