@@ -60,6 +60,11 @@ html { scroll-behavior: smooth; }
   --accent-purple-bg: #1e0a35;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   font-family: var(--font);
   background: var(--bg);
@@ -299,7 +304,8 @@ a:hover { color: var(--accent-hover); }
 .mf-btn:hover { border-color: var(--ink); color: var(--ink); }
 .mf-btn.active { border-color: var(--accent); color: var(--accent); font-weight: 600; background: var(--accent-red-bg); }
 
-.mastery-table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); }
+.mastery-table-wrap { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.mastery-table { width: 100%; border-collapse: collapse; border: 1px solid var(--border); min-width: 560px; }
 .mastery-table thead th {
   background: var(--bg-muted); font-size: 0.72rem; font-weight: 600;
   padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border);

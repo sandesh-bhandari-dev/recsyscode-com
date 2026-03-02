@@ -190,6 +190,7 @@ export default function CourseView({ folderId, onBack }) {
         ))}
       </div>
 
+      <div className="mastery-table-wrap">
       <table className="mastery-table">
         <thead>
           <tr>
@@ -234,6 +235,7 @@ export default function CourseView({ folderId, onBack }) {
           })}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }
