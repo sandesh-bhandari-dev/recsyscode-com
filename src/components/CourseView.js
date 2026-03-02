@@ -82,7 +82,7 @@ export default function CourseView({ folderId, onBack }) {
           </div>
 
           <div className="internship-box">
-            <p className="internship-motto">You will never be fully ready, start applying <strong style={{ color: '#000', fontSize: '1.05em' }}>NOW!!</strong></p>
+            <p className="internship-motto">You will never be fully ready, start applying <strong style={{ color: 'var(--accent)', fontSize: '1.05em' }}>NOW!! :P</strong></p>
             <p className="internship-title">Top Internship Resources</p>
             <ul className="internship-list">
               {[
