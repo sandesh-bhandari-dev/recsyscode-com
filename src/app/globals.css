@@ -67,6 +67,7 @@ body {
   line-height: 1.65;
   overflow-x: hidden;
   min-height: 100vh;
+  min-height: 100dvh;
   font-size: 15px;
   -webkit-font-smoothing: antialiased;
 }
@@ -87,9 +88,13 @@ a:hover { color: var(--accent-hover); }
   text-align: center;
   padding: 7px 16px;
   padding-top: calc(7px + env(safe-area-inset-top));
+  padding-left: calc(16px + env(safe-area-inset-left));
+  padding-right: calc(16px + env(safe-area-inset-right));
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.03em;
+  width: 100%;
+  box-sizing: border-box;
 }
 [data-theme="dark"] .top-banner { background: var(--accent); }
 
