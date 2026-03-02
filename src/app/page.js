@@ -11,7 +11,7 @@ export default function HomePage() {
       <div style={{ marginTop: '-40px' }}>
         <div className="hero-section">
           <h1 className="hero-title">
-            Learn <span className="accent">Recommender Systems</span> From Zero to Production
+            Learn <span className="accent">Recommender Systems</span>
           </h1>
           <p className="hero-subtitle">
             Curated papers, structured courses, code repos, and video lectures. Everything you need to master RecSys.
