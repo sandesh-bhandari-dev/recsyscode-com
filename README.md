@@ -4,11 +4,11 @@ A structured learning hub for Recommender Systems built for students and early p
 
 ## What's inside
 
-**Archive** — Course folders covering DSA, Recommender Systems, Python & SQL, System Design, PyTorch, and Production RecSys. Each course tracks your progress as you go through topics and mark things mastered.
+**Archive** : Course folders covering DSA, Recommender Systems, Python & SQL, System Design, PyTorch, and Production RecSys. Each course tracks your progress as you go through topics and mark things mastered.
 
-**Shelf** — A curated reading list of papers, resources, and links worth bookmarking.
+**Shelf** : A curated reading list of papers, resources, and links worth bookmarking.
 
-**Resources** — Handpicked learning materials organized by topic.
+**Resources** : Handpicked learning materials organized by topic.
 
 ## Stack
 
